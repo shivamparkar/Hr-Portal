@@ -278,9 +278,11 @@ const EmployeeManagment = () => {
                 },
               ]}
             >
-              <Upload name="logo" action="/upload.do" listType="picture">
-                <Button icon={<UploadOutlined />}>Click to upload</Button>
-              </Upload>
+              <AntForm.Item>
+                <Upload name="logo" action="/upload.do" listType="picture">
+                  <Button icon={<UploadOutlined />}>Click to upload</Button>
+                </Upload>
+              </AntForm.Item>
             </FormItem>
 
             <Button

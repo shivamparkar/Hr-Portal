@@ -1,24 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { LogoutOutlined, BellFilled } from "@ant-design/icons";
+import { LogoutOutlined  , BellFilled } from "@ant-design/icons";
 import DarkMode from "../CommonsComponents/DarkMode";
 import { Avatar, Badge, Space } from "antd";
-//import HrTransparent from "../Images/HRTransparent.png";
-import { Height } from "@mui/icons-material";
-
-import HrTransparent from "../Images/HRTransparent.png";
 
 const Head = styled.div`
   overflow: hidden;
-  background: linear-gradient(to right, #7cb6b6, #00b3b3);
+  background: linear-gradient(to right, #4db8b8, #00b3b3);
   padding: 20px 10px;
   position: fixed;
   top: 0;
-  width: ${({ sidebarCollapsed }) => (sidebarCollapsed ? "calc(100% - 80px)" : "calc(100% - 250px)")};  
+  width: 79%;
+  //width: 100%;
   z-index: 10;
   border-bottom-left-radius: 12px;
-  height: 19px;  
-  transition: width 0.3s ease;  
+  height: 19px;
 `;
 
 const ImageWrapper = styled.div`
@@ -52,11 +48,13 @@ const Logo = styled.div`
   font-weight: bold;
 `;
 
-const Header = ({ sidebarCollapsed }) => {
+const Header = () => {
   return (
-    <Head sidebarCollapsed={sidebarCollapsed}>
+    <Head>
       <ImageWrapper>
-        {/* <img src = {HrTransparent} atyle={{Height: '100px', Width: '100px'}}/> */}
+        {/* <Logo>
+          <span>HR Portal</span>
+        </Logo> */}
       </ImageWrapper>
       <Wrapper>
         {/* <Links>
@@ -64,8 +62,8 @@ const Header = ({ sidebarCollapsed }) => {
         </Links> */}
 
         <Links>
-          <Badge count={10} style={{ fontSize: "10px" }}>
-            <BellFilled style={{ fontSize: "20px" }} />
+          <Badge count={10} style={{ fontSize: '10px' }}>
+          <BellFilled style={{ fontSize: '20px' }}/>
           </Badge>
         </Links>
 

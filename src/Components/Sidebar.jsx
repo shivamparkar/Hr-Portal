@@ -1,76 +1,47 @@
 import React from "react";
 import styled from "styled-components";
+import { Menu, Button } from "antd";
+import {
+  DashboardFilled,
+  IdcardFilled,
+  ProfileFilled,
+  MoneyCollectFilled,
+  FundFilled,
+  SlidersFilled,
+  MenuOutlined,
+  MenuUnfoldOutlined,
+  ArrowRightOutlined
+} from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import BadgeSharpIcon from "@mui/icons-material/BadgeSharp";
-import FeaturedPlayListSharpIcon from "@mui/icons-material/FeaturedPlayListSharp";
-import PointOfSaleSharpIcon from "@mui/icons-material/PointOfSaleSharp";
-import ManageAccountsSharpIcon from "@mui/icons-material/ManageAccountsSharp";
-import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
-import SettingsIcon from '@mui/icons-material/Settings';
-
+import HrTransparent from "../Images/HRTransparent.png";
 
 const NavigationBar = styled.div`
-  height: 100%;
-  width: 250px;
   position: fixed;
-  z-index: 1;
   top: 0;
   left: 0;
+  z-index: 1;
+  height: 100vh;
+  width: ${({ collapsed }) => (collapsed ? "90px" : "250px")};
   background-color: #f1f1f1;
+  transition: width 0.7s ease;
   overflow-x: hidden;
   padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  //padding-left: ${({ collapsed }) => (collapsed ? "24px" : "0")};
 `;
 
 const Wrapper = styled.div`
-  padding: 20px 10px 10px 10px;
- // background-color: yellow;
-`;
-
-const SettingWrapper = styled.div`
-background-color: #f2dbf0;
-//padding: 10px;
-margin-top: 0px;
-//height: 70px;
-padding: 12px 0;
-`;
-
-
-
-
-
-const Links = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: white;
-  gap: 13px;
-  //background-color: blue;
-  margin-right: 10px; 
-`;
-
-const LinkItem = styled(Link)`
-  color: #000000;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  padding: 10px 12px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: #b090b4;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  padding: 20px 10px 10px 1px;
+  flex-grow: 1;
+  
 `;
 
 const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
+  color: black;
   text-align: center;
   padding: 10px;
   font-size: 90px;
@@ -78,55 +49,132 @@ const LogoWrapper = styled.div`
   border-bottom-right-radius: 12px;
   width: 92%;
   margin-left: 0;
-  background-color: purple;
-  height: 48px;
+  background-color: teal;
+  height: 40px;
   margin-top: -16px;
+  visibility: ${({ collapsed }) =>
+    collapsed ? "hidden" : "visible"};
 `;
 
-const Logo = styled.div`
-  font-size: 25px;
-  font-weight: bold;
-  white-space: nowrap;
+const CustomMenu = styled(Menu)`
+  background-color: #f1f1f1;
+  border-right: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding-left: 0px;
+
+  .ant-menu-item {
+    font-size: 15px;
+    color: #000000;
+    padding: 12px 25px 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+
+    &:hover {
+      background-color: #228484;
+      color: #000000;
+      border-radius: 10px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .anticon {
+      color: #065151;
+      font-size: 18px;
+      margin-right: 10px;
+    }
+  }
+
+  .ant-menu-item-selected {
+    background-color: teal;
+    color: #ffffff;
+    border-radius: 10px;
+    
+
+    .anticon {
+      color: white;
+    }
+  }
+
+  .ant-menu-item-active {
+    background-color: #4ec3b7;
+    color: #ffffff;
+    border-radius: 10px;
+
+    .anticon {
+      color: #ffffff;
+    }
+  }
 `;
 
-export const Sidebar = () => {
+const ToggleButton = styled(Button)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #000000;
+  font-size: 20px;
+  transform: translatex(-50%); 
+  
+`;
+
+export const Sidebar = ({ collapsed, setCollapsed }) => {
   return (
-    <div>
-      <NavigationBar>
-        <LogoWrapper>
-          <Logo>
-            <span>HR Portal</span>
-          </Logo>
-        </LogoWrapper>
-        <Wrapper>
-          <Links>
-            <LinkItem to="/dashboard">
-              <DashboardIcon style={{ fontSize: 24 }} /> Dashboard
-            </LinkItem>
-            <LinkItem to="/employee-management">
-              <BadgeSharpIcon style={{ fontSize: 24 }} /> Employee Management
-            </LinkItem>
-            <LinkItem to="/attendance">
-              <FeaturedPlayListSharpIcon style={{ fontSize: 24 }} /> Attendance
-            </LinkItem>
-            <LinkItem to="/payroll">
-              <PointOfSaleSharpIcon style={{ fontSize: 24 }} /> Payroll
-            </LinkItem>
-            <LinkItem to="/performance-management">
-              <ManageAccountsSharpIcon style={{ fontSize: 24 }} /> Performance
-              Management
-            </LinkItem>
-            <LinkItem to="/recruitment">
-              <WorkOutlineIcon style={{ fontSize: 24 }} /> Recruitment
-            </LinkItem>
-          </Links>
-        </Wrapper>
-        {/* <SettingWrapper>
-  <SettingsIcon style={{ fontSize: "44px", marginLeft: "14px", margintop: "27px", cursor:"pointer" }} />
-   
-</SettingWrapper> */}
+    <NavigationBar collapsed={collapsed}>
+      <ToggleButton
+        onClick={() => setCollapsed(!collapsed)}
+        icon={collapsed ? <ArrowRightOutlined style = {{ 
+          fontSize: '20px'
+        }} />: <MenuOutlined style = {{ 
+          color: 'white'
+        }} />} 
+      />
 
-      </NavigationBar>
-    </div>
+      <LogoWrapper collapsed={collapsed}>
+        <img src={HrTransparent} style={{ height: "100px", width: "100px" }} />
+      </LogoWrapper>
+      <Wrapper>
+        <CustomMenu mode="inline">
+          <Menu.Item
+            key="dashboard"
+            icon={<DashboardFilled style={{ fontSize: 21 }} />}
+          >
+            <Link to="/dashboard">Dashboard</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="employee-management"
+            icon={<IdcardFilled style={{ fontSize: 24 }} />}
+          >
+            <Link to="/employee-management">Staffing</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="attendance"
+            icon={<ProfileFilled style={{ fontSize: 24 }} />}
+          >
+            <Link to="/attendance">Attendance</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="payroll"
+            icon={<MoneyCollectFilled style={{ fontSize: 24 }} />}
+          >
+            <Link to="/payroll">Payroll</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="performance-management"
+            icon={<FundFilled style={{ fontSize: 24 }} />}
+          >
+            <Link to="/performance-management">Performance</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="recruitment"
+            icon={<SlidersFilled style={{ fontSize: 24 }} />}
+          >
+            <Link to="/recruitment">Recruitment</Link>
+          </Menu.Item>
+        </CustomMenu>
+      </Wrapper>
+    </NavigationBar>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Input, DatePicker, Form as AntForm, message, Select } from "antd";
+import { Modal, Input, DatePicker, Form as AntForm, message , Select} from "antd";
 import moment from "moment";
 
 const EditableForm = ({
@@ -17,16 +17,13 @@ const EditableForm = ({
       setFormValues({ ...record });
     }
   }, [record]);
-  const getInputField = (column, formValues, setFormValues) => {
+
+  const getInputField = (column) => {
     const value = formValues?.[column.dataIndex];
     const placeholderText = value ? value : "No Data";
 
-    // Handle DatePicker type
-    if (
-      column.type === "datepicker" &&
-      value &&
-      moment(value, "YYYY-MM-DD", true).isValid()
-    ) {
+
+    if (value && moment(value, "YYYY-MM-DD", true).isValid()) {
       return (
         <AntForm.Item
           name={column.dataIndex}
@@ -43,29 +40,52 @@ const EditableForm = ({
               }));
             }}
             style={{ width: "100%", height: "50px" }}
-            placeholder={placeholderText}
+            // placeholder={placeholderText}
           />
         </AntForm.Item>
       );
     }
 
-    // Handle Dropdown type (for Priority, Status, etc.)
-    if (column.type === "dropdown") {
-      const options =
-        column.dataIndex === "Priority"
-          ? ["Low", "Medium", "High"]
-          : column.dataIndex === "Status"
-            ? ["Not Started", "In Progress", "Completed"]
-            : [];
-
+    if (value && /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i.test(value)) {
       return (
         <AntForm.Item
           name={column.dataIndex}
-          key={column.dataIndex}
           label={column.title}
           rules={[
-            { required: false, message: `Please select ${column.title}` },
+            {
+              required: true,
+              // type: "email",
+              // message: "Please enter a valid email address!",
+            },
           ]}
+        >
+          <Input
+            value={value}
+            onChange={(e) => {
+              setFormValues((prev) => ({
+                ...prev,
+                [column.dataIndex]: e.target.value,
+              }));
+            }}
+            placeholder={placeholderText}
+            defaultValue={value}
+          />
+        </AntForm.Item>
+      );
+    }
+
+    if (column.type === "dropdown") {
+      const options = column.dataIndex === "Priority" 
+        ? ["High", "Medium", "Low"] 
+        : column.dataIndex === "Status" 
+        ? ["Not Started", "In Progress", "Completed"] 
+        : [];
+  
+      return (
+        <AntForm.Item
+          name={column.dataIndex}
+          label={column.title}
+          rules={[{ required: false, message: `Please select ${column.title}` }]}
         >
           <Select
             value={value}
@@ -87,27 +107,24 @@ const EditableForm = ({
       );
     }
 
-    // Handle Input type (for general text fields like TaskName)
-    if (column.type === "input") {
-      return (
-        <AntForm.Item
-          name={column.dataIndex}
-          label={column.title}
-          rules={[{ required: false, message: `Please enter ${column.title}` }]}
-        >
-          <Input
-            value={value}
-            onChange={(e) => {
-              setFormValues((prev) => ({
-                ...prev,
-                [column.dataIndex]: e.target.value,
-              }));
-            }}
-            placeholder={placeholderText}
-          />
-        </AntForm.Item>
-      );
-    }
+    return (
+      <AntForm.Item
+        name={column.dataIndex}
+        label={column.title}
+        rules={[{ required: false, message: `Please enter ${column.title}` }]}
+      >
+        <Input
+          value={value}
+          onChange={(e) => {
+            setFormValues((prev) => ({
+              ...prev,
+              [column.dataIndex]: e.target.value,
+            }));
+          }}
+          placeholder={placeholderText}
+        />
+      </AntForm.Item>
+    );
   };
 
   return (

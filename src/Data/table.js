@@ -1,4 +1,3 @@
-
 const table = [
   {
     ID: 1,
@@ -252,8 +251,6 @@ const table = [
   },
 ];
 
-
-
 const Tablecolumns = [
   { title: "ID", dataIndex: "ID", key: "ID" },
   { title: "firstName", dataIndex: "firstName", key: "firstName" },
@@ -266,14 +263,28 @@ const Tablecolumns = [
 ];
 
 const Employee = [
-  {title: "ID", dataIndex: "ID", key: "ID"},
-  {title: "TaskName", dataIndex: "TaskName", key: "TaskName", type: "input"},
-  {title: "Due Date", dataIndex: "Due Date", key: "Due Date", type: "datepicker"},
-  {title: "Priority", dataIndex: "Priority", key: "Priority" , type: "dropdown"},
-  {title: "Status", dataIndex: "Status", key: "Status", type: "dropdown"},
-  {title: "Progress", dataIndex: "Progress", key: "Progress", type: "datepicker"},
-  
-]
+  { title: "ID", dataIndex: "ID", key: "ID" },
+  { title: "TaskName", dataIndex: "TaskName", key: "TaskName", type: "input" },
+  {
+    title: "Due Date",
+    dataIndex: "Due Date",
+    key: "Due Date",
+    type: "datepicker",
+  },
+  {
+    title: "Priority",
+    dataIndex: "Priority",
+    key: "Priority",
+    type: "dropdown",
+  },
+  { title: "Status", dataIndex: "Status", key: "Status", type: "dropdown" },
+  {
+    title: "Progress",
+    dataIndex: "Progress",
+    key: "Progress",
+    type: "datepicker",
+  },
+];
 
 const EmployeeData = [
   {
@@ -282,7 +293,7 @@ const EmployeeData = [
     "Due Date": "2025-02-01",
     Priority: "High",
     Status: "In Progress",
-    Progress: "60%"
+    Progress: "60%",
   },
   {
     ID: "E002",
@@ -290,7 +301,7 @@ const EmployeeData = [
     "Due Date": "2025-02-10",
     Priority: "Medium",
     Status: "Not Started",
-    Progress: "0%"
+    Progress: "0%",
   },
   {
     ID: "E003",
@@ -298,7 +309,7 @@ const EmployeeData = [
     "Due Date": "2025-02-05",
     Priority: "Low",
     Status: "Completed",
-    Progress: "100%"
+    Progress: "100%",
   },
   {
     ID: "E004",
@@ -306,7 +317,7 @@ const EmployeeData = [
     "Due Date": "2025-02-15",
     Priority: "High",
     Status: "In Progress",
-    Progress: "30%"
+    Progress: "30%",
   },
   {
     ID: "E005",
@@ -314,13 +325,10 @@ const EmployeeData = [
     "Due Date": "2025-02-20",
     Priority: "Medium",
     Status: "Not Started",
-    Progress: "0%"
-  }
-]
-
+    Progress: "0%",
+  },
+];
 
 export default table;
 
-
-
-export { Tablecolumns , Employee, EmployeeData};
+export { Tablecolumns, Employee, EmployeeData };
