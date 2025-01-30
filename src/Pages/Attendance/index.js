@@ -329,3 +329,132 @@ export const dataSource = [
     remarks: "Family matter",
   },
 ];
+
+
+export const leaveRequestSchema = [
+  {
+    title: "Employee ID",
+    dataIndex: "employeeId",
+    key: "employeeId",
+    type: "input",
+  },
+  {
+    title: "Employee Name",
+    dataIndex: "employeeName",
+    key: "employeeName",
+    type: "input",
+  },
+  {
+    title: "Department",
+    dataIndex: "department",
+    key: "department",
+    type: "input",
+  },
+  {
+    title: "Leave Type",
+    dataIndex: "leaveType",
+    key: "leaveType",
+    type: "dropdown",
+  },
+  {
+    title: "Start Date",
+    dataIndex: "startDate",
+    key: "startDate",
+    type: "datepicker",
+  },
+  {
+    title: "End Date",
+    dataIndex: "endDate",
+    key: "endDate",
+    type: "datepicker",
+  },
+  {
+    title: "Reason",
+    dataIndex: "Reason",
+    key: "Reason",
+    type: "input",
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+    type: "dropdown",
+  },
+];
+
+
+
+
+export const leaveRequestData = [
+  {
+    employeeId: "E123",
+    employeeName: "John Doe",
+    department: "HR",
+    leaveType: "Sick Leave",
+    startDate: "2025-01-20",
+    endDate: "2025-01-22",
+    Reason: "Sick",
+    status: "Pending",
+  },
+  {
+    employeeId: "E124",
+    employeeName: "Jane Smith",
+    department: "Finance",
+    leaveType: "Vacation",
+    startDate: "2025-01-25",
+    endDate: "2025-01-30",
+    Reason: "Sick",
+    status: "Pending",
+  },
+  {
+    employeeId: "E125",
+    employeeName: "Bob Johnson",
+    department: "Engineering",
+    leaveType: "Personal Leave",
+    startDate: "2025-01-27",
+    endDate: "2025-01-28",
+    Reason: "Sick",
+    status: "Pending",
+  },
+  {
+    employeeId: "E126",
+    employeeName: "Alice White",
+    department: "Marketing",
+    leaveType: "Sick Leave",
+    startDate: "2025-01-28",
+    endDate: "2025-01-29",
+    Reason: "Sick",
+    status: "Pending",
+  },
+  {
+    employeeId: "E127",
+    employeeName: "Michael Brown",
+    department: "Finance",
+    leaveType: "Vacation",
+    startDate: "2025-01-15",
+    endDate: "2025-01-20",
+    Reason: "Sick",
+    status: "Pending",
+  },
+  {
+    employeeId: "E128",
+    employeeName: "Emily Davis",
+    department: "HR",
+    leaveType: "Sick Leave",
+    startDate: "2025-01-22",
+    endDate: "2025-01-24",
+    Reason: "Sick",
+    status: "Pending",
+  },
+  {
+    employeeId: "E129",
+    employeeName: "David Wilson",
+    department: "Engineering",
+    leaveType: "Casual Leave",
+    startDate: "2025-01-19",
+    endDate: "2025-01-20",
+    Reason: "Sick",
+    status: "Pending",
+  },
+];
+

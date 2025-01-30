@@ -126,7 +126,8 @@ export const Sidebar = ({ collapsed, setCollapsed }) => {
       <ToggleButton
         onClick={() => setCollapsed(!collapsed)}
         icon={collapsed ? <ArrowRightOutlined style = {{ 
-          fontSize: '20px'
+          fontSize: '23px',
+          boxShadow: '2px 2px 10px rgba(0, 0, 0, 0.1)'
         }} />: <MenuOutlined style = {{ 
           color: 'white'
         }} />} 

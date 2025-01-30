@@ -5,7 +5,7 @@ import { Sidebar } from "./Components/Sidebar";
 import Dashboard from "./Pages/Dashboard";
 import EmployeeManagement from "./Pages/EmployeeManagment";
 import Attendance from "./Pages/Attendance/Attendance";
-import Payroll from "./Pages/Payroll";
+import Payroll from "./Pages/Payroll/Payroll";
 import PerformanceManagement from "./Pages/PerformanceManagment";
 import Login from "./Pages/Login";
 import Recruitment from "./Pages/Recruitment";
@@ -32,8 +32,8 @@ function App() {
             marginLeft: isLoggedIn ? (collapsed ? "90px" : "250px") : "0",
             transition: "margin-left 0.5s ease",
             paddingtop: "16px",
-            // backgroundColor: "yellow",
-            // position:"sticky",
+            overflowX: "hidden",
+          
           }}
         >
           {isLoggedIn && <Header sidebarCollapsed={collapsed} />}

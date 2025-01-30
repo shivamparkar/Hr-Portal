@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import CommonTable from "../../CommonsComponents/Table";
+import styled from 'styled-components';
 import { HomeOutlined, ReconciliationOutlined } from "@ant-design/icons";
 import {
   Tabs,
@@ -15,10 +16,7 @@ import {
   Modal,
 } from "antd";
 
-import { columns, dataSource, leaveRequestSchema, leaveRequestData } from "./index";
-
-
-import CommonTable from "../../CommonsComponents/Table";
+import {columns} from '../Payroll/index';
 
 const { TabPane } = Tabs;
 
@@ -58,17 +56,19 @@ const StickyTabs = styled(Tabs)`
   z-index: 5;
 `;
 
-const Attendance = () => {
+
+const Payroll = () => {
+
   const items = [
     {
       key: "1",
-      label: "Employee Attendance List",
-      children: <CommonTable columns={columns} dataSource={dataSource} />,
+      label: "Base Salary",
+      children: <CommonTable columns={columns}  />,
     },
     {
       key: "2",
       label: "Leave Requests",
-      children: <CommonTable columns={leaveRequestSchema} dataSource={leaveRequestData} />,
+      children: (''),
     },
     // {
     //   key: "3",
@@ -79,38 +79,37 @@ const Attendance = () => {
 
   return (
     <Container>
-      <BreadCrumb>
-        <Breadcrumb
-          items={[
-            {
-              title: (
-                <a
-                  href="/dashboard"
-                  style={{
-                    color: "black",
-                  }}
-                >
-                  <HomeOutlined /> DashBoard
-                </a>
-              ),
-            },
-            {
-              title: (
-                <a
-                  href=""
-                  style={{
-                    color: "black",
-                  }}
-                >
-                  <ReconciliationOutlined /> Attendance
-                </a>
-              ),
-            },
-          ]}
-        />
-      </BreadCrumb>
-
-      <Wrapper>
+    <BreadCrumb>
+      <Breadcrumb
+        items={[
+          {
+            title: (
+              <a
+                href="/dashboard"
+                style={{
+                  color: "black",
+                }}
+              >
+                <HomeOutlined /> DashBoard
+              </a>
+            ),
+          },
+          {
+            title: (
+              <a
+                href=""
+                style={{
+                  color: "black",
+                }}
+              >
+                <ReconciliationOutlined /> Attendance
+              </a>
+            ),
+          },
+        ]}
+      />
+    </BreadCrumb>
+    <Wrapper>
         <StickyTabs
           defaultActiveKey="1"
           tabBarStyle={{
@@ -131,7 +130,7 @@ const Attendance = () => {
         </StickyTabs>
       </Wrapper>
     </Container>
-  );
-};
+  )
+}
 
-export default Attendance;
+export default Payroll

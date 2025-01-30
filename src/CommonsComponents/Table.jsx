@@ -4,6 +4,16 @@ import EditableForm from "./Form";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
+const TableWrapper = styled.div`
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+
+  max-width: 90;
+  table-layout: fixed;
+  //background-color: yellow;
+`;
+
 const CommonTable = ({
   columns,
   dataSource,
@@ -37,29 +47,31 @@ const CommonTable = ({
         Add New Data
       </Button> */}
 
-      <Table
-        columns={[
-          ...columns,
-          {
-            title: "Actions",
-            key: "actions",
-            render: (text, record) => (
-              <div style={{display: "flex"}}>
-                <EditOutlined onClick={() => onEditButton(record)} />
-                <DeleteOutlined
-                  style={{ color: "red", marginLeft: 10 }}
-                  onClick={() => onDelete(record)}
-                />
-              </div>
-            ),
-          },
-        ]}
-        dataSource={dataSource.map((item, index) => ({
-          ...item,
-          ID: item.ID || index,
-        }))}
-        rowKey="ID"
-      />
+      <TableWrapper>
+        <Table
+          columns={[
+            ...columns,
+            {
+              title: "Actions",
+              key: "actions",
+              render: (text, record) => (
+                <div style={{ display: "flex" }}>
+                  <EditOutlined onClick={() => onEditButton(record)} />
+                  <DeleteOutlined
+                    style={{ color: "red", marginLeft: 10 }}
+                    onClick={() => onDelete(record)}
+                  />
+                </div>
+              ),
+            },
+          ]}
+          dataSource={dataSource.map((item, index) => ({
+            ...item,
+            ID: item.ID || index,
+          }))}
+          rowKey="ID"
+        />
+      </TableWrapper>
 
       {isEditing && (
         <EditableForm

@@ -65,12 +65,14 @@ const Header = ({ sidebarCollapsed }) => {
 
         <Links>
           <Badge count={10} style={{ fontSize: "10px" }}>
-            <BellFilled style={{ fontSize: "20px" }} />
+            <BellFilled style={{ fontSize: "20px" , color: 'white'}} />
           </Badge>
         </Links>
 
         <Links>
-          <LogoutOutlined />
+          <LogoutOutlined style={{
+            color: 'white'
+          }}/>
         </Links>
       </Wrapper>
     </Head>
