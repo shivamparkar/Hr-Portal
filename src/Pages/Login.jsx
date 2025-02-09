@@ -3,6 +3,13 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Users from "../Data/user";
 import LoginImg from "../Images/Login.jpg";
+import { Input as AntInput, Button, Checkbox, Form, Typography } from "antd";
+import { LockOutlined, MailOutlined } from "@ant-design/icons";
+import { theme, Grid } from "antd";
+
+const { useToken } = theme;
+const { Text, Title, Link } = Typography;
+const { useBreakpoint } = Grid;
 
 const ParentContainer = styled.div`
   display: flex;
@@ -17,7 +24,7 @@ const ParentContainer = styled.div`
 
 const Container = styled.div`
   width: 290px;
-  height: 400px;
+  height: auto;
   border: 1px solid black;
   padding: 20px;
   display: flex;
@@ -25,27 +32,14 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   border-radius: 10px;
-  background-color: #d66fdf;
+  background-color: #b2b2b2;
 `;
 
-const Title = styled.div`
+const TitleWrapper = styled.div`
   font-size: 30px;
   text-align: center;
   margin-bottom: 20px;
   color: #000000;
-`;
-
-const Input = styled.input`
-  width: 85%;
-  padding: 10px;
-  margin-top: 16px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  text-align: center;
-  color: black;
-  &::placeholder {
-    color: black;
-  }
 `;
 
 const Wrapper = styled.div`
@@ -57,36 +51,28 @@ const Wrapper = styled.div`
   padding: 20px 20px 0px 20px;
 `;
 
-const Button = styled.button`
-  padding: 10px;
-  background-color: #006d04;
-  color: white;
-  border: none;
-  cursor: pointer;
-  width: 40%;
-  border-radius: 20px;
-  margin-bottom: 0px;
-  margin-top: 31px;
-`;
-
-const LinkButton = styled.button`
-  padding: 10px;
-  background-color: transparent;
-  color: #000000;
-  border: none;
-  cursor: pointer;
-  margin-top: 20px;
-  margin-bottom: 0px;
-`;
+const styles = {
+  forgotPassword: {
+    float: "right",
+  },
+  footer: {
+    marginTop: 20,
+    textAlign: "center",
+    width: "100%",
+  },
+};
 
 const Login = ({ onLogin }) => {
   const navigate = useNavigate();
+  const { token } = useToken();
+  const screens = useBreakpoint();
 
   const [users, setUsers] = useState(Users);
-  //console.log(Users);
-  
+  const [formData, setFormData] = useState({ email: "", password: "", remember: true });
 
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+  };
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -97,7 +83,6 @@ const Login = ({ onLogin }) => {
     );
 
     if (userFound) {
-      
       onLogin();
       navigate("/dashboard");
     } else {
@@ -113,26 +98,84 @@ const Login = ({ onLogin }) => {
   return (
     <ParentContainer>
       <Container>
-        <Title>Login</Title>
+        <TitleWrapper>
+          <Title>Sign in</Title>
+          <Text>Welcome back! Please enter your details below to sign in.</Text>
+        </TitleWrapper>
+
         <Wrapper>
-          <Input
-            placeholder="Email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <Input
-            placeholder="Password"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <Button onClick={submitForm}>Login</Button>
-          <LinkButton onClick={() => navigate("/register")}>
-            Don't have an account?
-          </LinkButton>
+          <Form
+            name="login_form"
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            layout="vertical"
+            requiredMark="optional"
+            onSubmit={submitForm}
+          >
+            <Form.Item
+              name="email"
+              rules={[
+                {
+                  type: "email",
+                  required: true,
+                  message: "Please input your Email!",
+                },
+              ]}
+            >
+              <AntInput
+                prefix={<MailOutlined />}
+                placeholder="Email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Password!",
+                },
+              ]}
+            >
+              <AntInput.Password
+                prefix={<LockOutlined />}
+                placeholder="Password"
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </Form.Item>
+
+            <Form.Item>
+              <Checkbox
+                name="remember"
+                checked={formData.remember}
+                onChange={(e) => setFormData({ ...formData, remember: e.target.checked })}
+              >
+                Remember me
+              </Checkbox>
+              <a style={styles.forgotPassword} href="">
+                Forgot password?
+              </a>
+            </Form.Item>
+
+            <Form.Item>
+              <Button block type="primary" htmlType="submit">
+                Log in
+              </Button>
+
+              <div style={styles.footer}>
+                <Text>Don't have an account? </Text>
+                <Link href="" onClick={() => navigate("/register")}>
+                  Sign up now
+                </Link>
+              </div>
+            </Form.Item>
+          </Form>
         </Wrapper>
       </Container>
     </ParentContainer>
