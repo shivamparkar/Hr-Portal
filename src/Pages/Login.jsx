@@ -54,6 +54,7 @@ const Wrapper = styled.div`
 const styles = {
   forgotPassword: {
     float: "right",
+    color: "red",
   },
   footer: {
     marginTop: 20,
@@ -68,13 +69,19 @@ const Login = ({ onLogin }) => {
   const screens = useBreakpoint();
 
   const [users, setUsers] = useState(Users);
-  const [formData, setFormData] = useState({ email: "", password: "", remember: true });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    remember: true,
+  });
 
   const onFinish = (values) => {
+    debugger;
     console.log("Received values of form: ", values);
   };
 
   const submitForm = (e) => {
+    debugger;
     e.preventDefault();
 
     const userFound = users.find(
@@ -91,6 +98,7 @@ const Login = ({ onLogin }) => {
   };
 
   const handleChange = (event) => {
+    
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
@@ -110,7 +118,7 @@ const Login = ({ onLogin }) => {
             onFinish={onFinish}
             layout="vertical"
             requiredMark="optional"
-            onSubmit={submitForm}
+            //onSubmit={submitForm}
           >
             <Form.Item
               name="email"
@@ -153,8 +161,11 @@ const Login = ({ onLogin }) => {
             <Form.Item>
               <Checkbox
                 name="remember"
+                
                 checked={formData.remember}
-                onChange={(e) => setFormData({ ...formData, remember: e.target.checked })}
+                onChange={(e) =>
+                  setFormData({ ...formData, remember: e.target.checked })
+                }
               >
                 Remember me
               </Checkbox>
@@ -164,13 +175,17 @@ const Login = ({ onLogin }) => {
             </Form.Item>
 
             <Form.Item>
-              <Button block type="primary" htmlType="submit">
+              <Button block type="primary" htmlType="submit" onClick={submitForm}>
                 Log in
               </Button>
 
               <div style={styles.footer}>
                 <Text>Don't have an account? </Text>
-                <Link href="" onClick={() => navigate("/register")}>
+                <Link
+                  href=""
+                  onClick={() => navigate("/register")}
+                  style={{ color: "green" }}
+                >
                   Sign up now
                 </Link>
               </div>

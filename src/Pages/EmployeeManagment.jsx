@@ -45,7 +45,7 @@ const Container = styled.div`
   padding: 20px;
   margin-top: 70px;
   position: sticky;
-  background-color: black;
+ // background-color: black;
 `;
 
 const BreadCrumb = styled.div`
@@ -68,7 +68,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1px 20px;
-  background-color: yellow;
+ // background-color: yellow;
   position: sticky;
 `;
 
